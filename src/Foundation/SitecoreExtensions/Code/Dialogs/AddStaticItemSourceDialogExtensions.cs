@@ -19,6 +19,12 @@ using System.Web.UI;
 using HackstreetBoys.Foundation.SitecoreExtensions.PackageEntries;
 using Sitecore.Install.Filters;
 using Sitecore.Layouts;
+using Sitecore.Data.Fields;
+using Sitecore.DependencyInjection;
+using Sitecore.Abstractions;
+using Sitecore.Pipelines.ResolveRenderingDatasource;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace HackstreetBoys.Foundation.SitecoreExtensions.Dialogs
 {
@@ -222,30 +228,36 @@ namespace HackstreetBoys.Foundation.SitecoreExtensions.Dialogs
 
                     //Get item links from link database to get related media
                     var item = Database.GetItem(itemUri);
-                    var layoutField = item.Fields[Sitecore.FieldIDs.LayoutField];
-
-                    var layout = LayoutDefinition.Parse(layoutField.Value);
-                    foreach (var t1 in layout.Devices)
+                    if (item != null)
                     {
-                        var device = t1 as DeviceDefinition;
-                        if (device != null)
-                        {
-                            foreach (var t in device.Renderings)
-                            {
-                                var rendering = t as RenderingDefinition;
-                                if (rendering != null && !string.IsNullOrEmpty(rendering.Datasource))
-                                {
-                                    var datasourceItem = Database.GetDatabase("master").GetItem(rendering.Datasource);
-                                    if (datasourceItem != null)
-                                    {
-                                        explicitItemSource.Entries.Add((new ItemReference(datasourceItem.Uri, false)).ToString());
+                        //Get all added renderings
+                        Sitecore.Layouts.RenderingReference[] renderings = item.Visualization.GetRenderings(Sitecore.Context.Device, true);
 
-                                        getRelatedMediaItems(item, explicitItemSource);
-                                    }
-                                }
+                        // Get the layout definitions and the device
+                        LayoutField layoutField = new LayoutField(item.Fields[Sitecore.FieldIDs.LayoutField]);
+                        LayoutDefinition layoutDefinition = LayoutDefinition.Parse(layoutField.Value);
+                        DeviceDefinition deviceDefinition = layoutDefinition.GetDevice(Sitecore.Context.Device.ID.ToString());
+                        foreach (RenderingReference rendering in renderings)
+                        {
+                            //inject pipeline manager (instead of ServiceLocator you can use constructor injection if needed)
+                            BaseCorePipelineManager pipelineManager = ServiceLocator.ServiceProvider.GetService<BaseCorePipelineManager>();
+
+                            //create pipeline arguments where you put data source string
+                            var args = new ResolveRenderingDatasourceArgs(rendering.Settings.DataSource);
+                            args.CustomData["contextItem"] = item;
+
+                            //run the pipeline
+                            pipelineManager.Run("resolveRenderingDatasource", args);
+
+                            var datasourceItem = Sitecore.Configuration.Factory.GetDatabase("master").GetItem(args.Datasource);
+                            if (datasourceItem != null)
+                            {
+                                explicitItemSource.Entries.Add((new ItemReference(datasourceItem)).ToString());
+                                getRelatedMediaItems(datasourceItem, explicitItemSource);
                             }
                         }
                     }
+
                 }
             }
 
