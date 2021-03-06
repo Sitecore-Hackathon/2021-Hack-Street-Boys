@@ -192,21 +192,8 @@ namespace HackstreetBoys.Foundation.SitecoreExtensions.Dialogs
                     {
                         SkipVersions = true,
                         Database = itemUri.DatabaseName,
-
                         Root = itemUri.ItemID.ToString()
                     };
-                    //itemSource.Language = null;
-                    if(!string.IsNullOrEmpty(Languages.Value))
-                    {
-                        Language lng;
-                        if(Language.TryParse(Languages.Value, out lng))
-                        {
-                            //itemSource.Language = lng;
-                            var filter = new ItemLanguageFilter();
-                            filter.Languages = Languages.Value;
-                            itemSource.Include.Add(filter);
-                        }
-                    }
                     sourceCollection.Add(itemSource);
                 }
                 else if (str == "single")
@@ -231,6 +218,10 @@ namespace HackstreetBoys.Foundation.SitecoreExtensions.Dialogs
                     }
                 }
             }
+
+            ExplicitItemSource.Builder builder = new ExplicitItemSource.Builder(ApplicationContext.DocumentHolder.Document as ExplicitItemSource);
+            builder.Initialize(new SimpleProcessingContext());
+            (new EntrySorter(sourceCollection)).Populate(new Uniq(builder));
             if (!string.IsNullOrEmpty(Languages.Value))
             {
                 Language lng;
@@ -239,12 +230,9 @@ namespace HackstreetBoys.Foundation.SitecoreExtensions.Dialogs
                     //itemSource.Language = lng;
                     var filter = new ItemLanguageFilter();
                     filter.Languages = Languages.Value;
-                    explicitItemSource.Include.Add(filter);
+                    builder.Source.Include.Add(filter);
                 }
             }
-            ExplicitItemSource.Builder builder = new ExplicitItemSource.Builder(ApplicationContext.DocumentHolder.Document as ExplicitItemSource);
-            builder.Initialize(new SimpleProcessingContext());
-            (new EntrySorter(sourceCollection)).Populate(new Uniq(builder));
             builder.Finish();
             string str1 = ApplicationContext.StoreObject(builder.Source);
             Context.ClientPage.ClientResponse.SetDialogValue(str1);
