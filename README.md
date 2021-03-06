@@ -4,21 +4,18 @@
 
 ## Module Name: Enhanced Package Designer:
 
-This module was designed to enhance and extend the existing out of the box package designer (Items Statically). Offering users the ability to add items versions in **specific language/s** and the ability to **Add item with along with media item references and/or datasource references**.
+This module was designed to enhance and extend the existing out of the box package designer (Items Statically). Offering users the ability to package items versions in **specific language/s** and the ability to **package item along with media item references and/or datasource references**.
 
 The enhanced designer can be utilized to target items in a specific language/s By allowing users to capture a single, or multiple languages, for a given page rather than the need to package all languages for a given page. This reduces the risk that potential content authors face when migrating content between environments because language page versions that are not complete would have previously been packaged.
 
-The enhanced designer also enables the user to package an item along with it's related/referenced media items and/or data sources. this will reduce the headache of trying to package page items and individually trying to indentify the referenced media/datasource items 
+The enhanced designer also enables the user to package an item along with it's related/referenced media items and/or data sources. this will reduce the headache of trying to package page items and individually trying to indentify the referenced media/datasource items.
 
-Extended flexibility list
+Features added in this module:
 -	Ability to select language/s filter when i adding items statically 
--	Ability to add item with it's referenced media items and/or datasource items
+-	Ability to add item with it's referenced media items 
+-	Ability to add item with it's referenced media and/ datasource items
 
 ![Enhanced Package Designer](docs/images/Add-Static-Items-Highlights.png?raw=true "Enhanced Package Designer")
-
-![Add with Media](docs/images/Add-With-Media.png?raw=true "Add with Media")
-
-![Add-with-Media-and-Datasources](docs/images/Add-with-Media-and-Datasources.png?raw=true "Add-with-Media-and-Datasources")
 
 ## Video link
 ⟹ Provide a video highlighing your Hackathon module submission and provide a link to the video. You can use any video hosting, file share or even upload the video to this repository. _Just remember to update the link below_
@@ -59,7 +56,9 @@ Extended flexibility list
  16. click on "item with media" and verify that the item was added with all referenced media items
  17. click on "item with datasources" and verify that item was added with all referenced media items
 
- 
+ ![Add with Media](docs/images/Add-With-Media.png?raw=true "Add with Media")
+
+![Add-with-Media-and-Datasources](docs/images/Add-with-Media-and-Datasources.png?raw=true "Add-with-Media-and-Datasources")
  
 
 ![Hackathon Logo](docs/images/hackathon.png?raw=true "Hackathon Logo")
