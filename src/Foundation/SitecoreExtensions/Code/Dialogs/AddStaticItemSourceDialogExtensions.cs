@@ -6,6 +6,7 @@ using Sitecore.Globalization;
 using Sitecore.Install.Framework;
 using Sitecore.Install.Items;
 using Sitecore.Install.Utils;
+using Sitecore.Links;
 using Sitecore.Shell.Applications.Install;
 using Sitecore.Shell.Applications.Install.Controls;
 using Sitecore.Web.UI.HtmlControls;
@@ -13,6 +14,7 @@ using Sitecore.Web.UI.Pages;
 using Sitecore.Web.UI.Sheer;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.UI;
 
 namespace HackstreetBoys.Foundation.SitecoreExtensions.Dialogs
@@ -88,6 +90,14 @@ namespace HackstreetBoys.Foundation.SitecoreExtensions.Dialogs
             this.AddEntry(this.DataContext.GetFolder(), "recursive", "office/16x16/elements_cascade.png");
         }
 
+        /// <summary>
+        /// Adds the item with all related Media Items
+        /// </summary>
+        public void AddItemWithMedia()
+        {
+            this.AddEntry(this.DataContext.GetFolder(), "singleWithMedia", "office/16x16/document_empty.png");
+        }
+
         private void Bind()
         {
             this.Name.BindTo(ApplicationContext.DocumentHolder.Document);
@@ -146,6 +156,23 @@ namespace HackstreetBoys.Foundation.SitecoreExtensions.Dialogs
                 else if (str == "single")
                 {
                     explicitItemSource.Entries.Add((new ItemReference(itemUri, false)).ToString());
+                }
+                else if (str == "singleWithMedia")
+                {
+                    //Add the single item
+                    explicitItemSource.Entries.Add((new ItemReference(itemUri, false)).ToString());
+
+                    //Get item links from link database to get related media
+                    var item = Database.GetItem(itemUri);
+                    ItemLink[] itemLinks = Globals.LinkDatabase.GetItemReferences(item, false);
+                    if (itemLinks != null)
+                    {
+                        var linkedItems = itemLinks.Select(x => x.GetTargetItem()).Where(x => x != null && x.Paths.IsMediaItem);
+                        foreach (var linkedItem in linkedItems)
+                        {
+                            explicitItemSource.Entries.Add((new ItemReference(linkedItem.Uri, false)).ToString());
+                        }
+                    }
                 }
             }
             ExplicitItemSource.Builder builder = new ExplicitItemSource.Builder(ApplicationContext.DocumentHolder.Document as ExplicitItemSource);

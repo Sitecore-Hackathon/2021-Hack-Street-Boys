@@ -46,6 +46,8 @@
               <div style="height:40px; overflow:hidden;">
                 <Toolbutton Icon="Office/24x24/elements_cascade.png" Header="Add with Subitems" ToolTip="Adds item with subitems" Click="AddTree"/>
                 <Toolbutton Icon="Office/24x24/document_empty.png" Header="Add Item" ToolTip="Add Item" Click="AddItem"/>
+                <Toolbutton Icon="Office/24x24/document_empty.png" Header="Add Item With Related Media" ToolTip="Add Item With Related Media" Click="AddItemWithMedia"/>
+
                 <Toolbutton Style="float:right" Icon="Office/24x24/delete.png" Header="Remove" ToolTip="Removes entry from selection list" Click="Remove(&quot;&quot;)"/>
               </div>
 
