@@ -28,14 +28,15 @@ Extended flexibility list
 
 ## Pre-requisites and Dependencies
 
- - None
+ - SXA (Only required for the demo, however the module itself can be installed without SXA)
 
 ## Installation instructions
 ⟹ Write a short clear step-wise instruction on how to install your module.  
 
- - Download [Sitecore 10.1 Graphical setup package for XM Scaled](https://dev.sitecore.net/Downloads/Sitecore_Experience_Platform/101/Sitecore_Experience_Platform_101.aspx)
- - Run the setup.exe, with **Installation/Solution Prefix** = hackstreetboys
- - Clone the repository locally
+ - Download and install fresh instance of (XM) [Sitecore 10.1](https://dev.sitecore.net/Downloads/Sitecore_Experience_Platform/101/Sitecore_Experience_Platform_101.aspx)
+ - Install SXA module
+ - Install Enhanced Package Designer-1.0.zip package (Can be found here)
+ - Install HackStreetBoys Demo Site-1.0.zip (can be found here)
  
 
 ## Usage instructions
