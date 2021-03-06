@@ -14,12 +14,20 @@ using Sitecore.Web.UI.Sheer;
 using System;
 using System.Collections.Generic;
 using System.Web.UI;
+using HackstreetBoys.Foundation.SitecoreExtensions.PackageEntries;
+using Sitecore.Install.Filters;
 
 namespace HackstreetBoys.Foundation.SitecoreExtensions.Dialogs
 {
     /// <summary></summary>
     public class AddStaticItemSourceDialogExtensions : WizardForm
     {
+        /// <summary></summary>
+        protected Sitecore.Web.UI.HtmlControls.Combobox Languages;
+
+        /// <summary></summary>
+        protected Sitecore.Web.UI.HtmlControls.Literal NoLanguageLabel;
+
         /// <summary></summary>
         protected DataContext DataContext;
 
@@ -46,6 +54,40 @@ namespace HackstreetBoys.Foundation.SitecoreExtensions.Dialogs
             if (page == "LastPage")
             {
                 this.BackButton.Disabled = true;
+            }
+        }
+
+        private void BindLanguages(Combobox list, string databaseName)
+        {
+            
+            if (list != null)
+            {
+                list.Controls.Clear();
+                Database database = Factory.GetDatabase(databaseName);
+                ListItem emptyItem = new ListItem()
+                {
+                    ID = Sitecore.Web.UI.HtmlControls.Control.GetUniqueID("Language")
+                };
+                emptyItem.Selected = true;
+                list.Controls.Add(emptyItem);
+                if (database != null)
+                {
+                    Language[] languages = database.Languages;
+                    Language[] languageArray = languages;
+                    for (int i = 0; i < (int)languageArray.Length; i++)
+                    {
+                        Language language = languageArray[i];
+                        ListItem checklistItem = new ListItem()
+                        {
+                            ID = Sitecore.Web.UI.HtmlControls.Control.GetUniqueID("Language")
+                        };
+                        list.Controls.Add(checklistItem);
+                        checklistItem.Header = language.CultureInfo.DisplayName;
+                        checklistItem.Value = language.Name;
+                    }
+                    
+                }
+                Context.ClientPage.ClientResponse.Refresh(list);
             }
         }
 
@@ -135,12 +177,22 @@ namespace HackstreetBoys.Foundation.SitecoreExtensions.Dialogs
                 string str = strArrays[0];
                 if (str == "recursive")
                 {
-                    ItemSource itemSource = new ItemSource()
+                    ExtendedItemSource itemSource = new ExtendedItemSource()
                     {
                         SkipVersions = true,
                         Database = itemUri.DatabaseName,
+
                         Root = itemUri.ItemID.ToString()
                     };
+                    itemSource.Language = null;
+                    if(!string.IsNullOrEmpty(Languages.Value))
+                    {
+                        Language lng;
+                        if(Language.TryParse(Languages.Value, out lng))
+                        {
+                            itemSource.Language = lng;
+                        }
+                    }
                     sourceCollection.Add(itemSource);
                 }
                 else if (str == "single")
@@ -196,6 +248,8 @@ namespace HackstreetBoys.Foundation.SitecoreExtensions.Dialogs
                 this.BuildDatabases((folder == null ? string.Empty : folder.Database.Name));
                 ApplicationContext.AttachDocument(new ExplicitItemSource());
                 this.Bind();
+
+                this.BindLanguages(this.Languages, "master");
             }
             base.OnLoad(e);
         }

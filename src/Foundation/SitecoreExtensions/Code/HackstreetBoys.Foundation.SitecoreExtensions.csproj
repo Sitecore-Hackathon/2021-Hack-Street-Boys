@@ -47,7 +47,6 @@
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -64,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dialogs\AddStaticItemSourceDialogExtensions.cs" />
+    <Compile Include="PackageEntry\ExtendedItemSource.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -75,7 +75,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="sitecore\shell\Applications\Install\Dialogs\" />
     <Content Include="sitecore\shell\Applications\Install\Dialogs\Static\AddStaticItemSourceDialog.xml" />
   </ItemGroup>
   <ItemGroup>
