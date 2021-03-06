@@ -8,20 +8,18 @@
 
 You can find a very good reference to Github flavoured markdown reference in [this cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet). If you want something a bit more WYSIWYG for editing then could use [StackEdit](https://stackedit.io/app) which provides a more user friendly interface for generating the Markdown code. Those of you who are [VS Code fans](https://code.visualstudio.com/docs/languages/markdown#_markdown-preview) can edit/preview directly in that interface too.
 
-## Team name
-⟹ Write the name of your Hackathon team here
+## Hackstreet Boys
 
-## Category
-⟹ Write the name of the selected category
+## Category : The best enhancement to the Sitecore Admin (XP) for Content Editors & Marketers
 
 ## Description
-⟹ Write a clear description of your hackathon entry.  
+  
+  # Enhanced Package Designer:
+  This module enhances the existing package designer by providing additional options when using **items statically** option
+  - allowing content authors to package items in specific language, This will help to package only content that is ready in specific language.
+  - Adding option to add single item with all media items that the item is referencing.
+  - Adding option to add single item with all datasource items that the item is referencing.
 
-  - Module Purpose
-  - What problem was solved (if any)
-    - How does this module solve it
-
-_You can alternately paste a [link here](#docs) to a document within this repo containing the description._
 
 ## Video link
 ⟹ Provide a video highlighing your Hackathon module submission and provide a link to the video. You can use any video hosting, file share or even upload the video to this repository. _Just remember to update the link below_
