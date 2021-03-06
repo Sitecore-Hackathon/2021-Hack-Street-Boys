@@ -58,6 +58,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Config\Include\Foundation\Foundation.SitecoreExtensions.config" />
     <None Include="Properties\PublishProfiles\Local.pubxml" />
     <None Include="Web.config" />
   </ItemGroup>
@@ -76,11 +77,11 @@
   <ItemGroup>
     <PackageReference Include="Sitecore.Kernel">
       <Version>10.1.0</Version>
-	  <PrivateAssets>all</PrivateAssets>
+      <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-	<PackageReference Include="Sitecore.Client">
+    <PackageReference Include="Sitecore.Client">
       <Version>10.1.0</Version>
-	  <PrivateAssets>all</PrivateAssets>
+      <PrivateAssets>all</PrivateAssets>
     </PackageReference>
   </ItemGroup>
   <PropertyGroup>
