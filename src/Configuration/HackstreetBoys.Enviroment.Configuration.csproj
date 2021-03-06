@@ -93,7 +93,7 @@
   <ItemGroup>
     <None Include="Environment.wpp.targets" />
     <None Include="Directory.Build.props" />
-    <Content Include="Web.config" />
+    <None Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
