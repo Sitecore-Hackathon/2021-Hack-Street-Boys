@@ -1,11 +1,5 @@
 # Hackathon Submission Entry form
 
-> __Important__  
-> 
-> Copy and paste the content of this file into README.md or face automatic __disqualification__  
-> All headlines and subheadlines shall be retained if not noted otherwise.  
-> Fill in text in each section as instructed and then delete the existing text, including this blockquote.
-
 You can find a very good reference to Github flavoured markdown reference in [this cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet). If you want something a bit more WYSIWYG for editing then could use [StackEdit](https://stackedit.io/app) which provides a more user friendly interface for generating the Markdown code. Those of you who are [VS Code fans](https://code.visualstudio.com/docs/languages/markdown#_markdown-preview) can edit/preview directly in that interface too.
 
 ## Team : Hackstreet Boys
@@ -14,10 +8,15 @@ You can find a very good reference to Github flavoured markdown reference in [th
 
 ## Module Name: Enhanced Package Designer:
 
-  This module enhances the existing package designer by providing additional options when using **items statically** option
-  - allowing content authors to package items in specific language, This will help to package only content that is ready in specific language.
-  - Adding option to add single item with all media items that the item is referencing.
-  - Adding option to add single item with all datasource items that the item is referencing.
+This module was designed to enhance and extend the existing out of the box package designer (Items Statically). Offering users the ability to add items versions in **specific language/s** and the ability to **Add item with along with media item references and/or datasource references**.
+
+The enhanced designer can be utilized to target items in a specific language/s By allowing users to capture a single, or multiple languages, for a given page rather than the need to package all languages for a given page. This reduces the risk that potential content authors face when migrating content between environments because language page versions that are not complete would have previously been packaged.
+
+The enhanced designer also enables the user to package an item along with it's related/referenced media items and/or data sources. this will reduce the headache of trying to package page items and individually trying to indentify the referenced media/datasource items 
+
+Extended flexibility list
+-	Ability to select language/s filter when i adding items statically 
+-	Ability to add item with it's referenced media items and/or datasource items
 
 
 ## Video link
