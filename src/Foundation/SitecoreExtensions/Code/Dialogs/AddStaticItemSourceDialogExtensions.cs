@@ -25,14 +25,15 @@ using Sitecore.Abstractions;
 using Sitecore.Pipelines.ResolveRenderingDatasource;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Sitecore.Text;
 
 namespace HackstreetBoys.Foundation.SitecoreExtensions.Dialogs
 {
     /// <summary></summary>
     public class AddStaticItemSourceDialogExtensions : WizardForm
     {
-        /// <summary></summary>
-        protected Sitecore.Web.UI.HtmlControls.Combobox Languages;
+        ///// <summary></summary>
+        protected Sitecore.Web.UI.HtmlControls.Checklist chkLanguages;
 
         /// <summary></summary>
         protected Sitecore.Web.UI.HtmlControls.Literal NoLanguageLabel;
@@ -66,19 +67,19 @@ namespace HackstreetBoys.Foundation.SitecoreExtensions.Dialogs
             }
         }
 
-        private void BindLanguages(Combobox list, string databaseName)
+        private void BindLanguages(Checklist list, string databaseName)
         {
 
             if (list != null)
             {
                 list.Controls.Clear();
                 Database database = Factory.GetDatabase(databaseName);
-                ListItem emptyItem = new ListItem()
+                ChecklistItem emptyItem = new ChecklistItem()
                 {
                     ID = Sitecore.Web.UI.HtmlControls.Control.GetUniqueID("Language")
                 };
-                emptyItem.Selected = true;
-                list.Controls.Add(emptyItem);
+                emptyItem.Checked = true;
+                emptyItem.Header = "All Languages";
                 if (database != null)
                 {
                     Language[] languages = database.Languages;
@@ -86,7 +87,7 @@ namespace HackstreetBoys.Foundation.SitecoreExtensions.Dialogs
                     for (int i = 0; i < (int)languageArray.Length; i++)
                     {
                         Language language = languageArray[i];
-                        ListItem checklistItem = new ListItem()
+                        ChecklistItem checklistItem = new ChecklistItem()
                         {
                             ID = Sitecore.Web.UI.HtmlControls.Control.GetUniqueID("Language")
                         };
@@ -144,12 +145,12 @@ namespace HackstreetBoys.Foundation.SitecoreExtensions.Dialogs
         /// </summary>
         public void AddItemWithMedia()
         {
-            this.AddEntry(this.DataContext.GetFolder(), "singleWithMedia", "office/16x16/document_empty.png");
+            this.AddEntry(this.DataContext.GetFolder(), "singleWithMedia", "office/16x16/link.png");
         }
 
         public void AddItemWithDataSources()
         {
-            this.AddEntry(this.DataContext.GetFolder(), "singleWithDataSources", "office/16x16/document_empty.png");
+            this.AddEntry(this.DataContext.GetFolder(), "singleWithDataSources", "office/16x16/data.png");
         }
 
         private void Bind()
@@ -224,56 +225,19 @@ namespace HackstreetBoys.Foundation.SitecoreExtensions.Dialogs
                 else if (str == "singleWithDataSources")
                 {
                     var item = Database.GetItem(itemUri);
-                    if (item != null)
-                    {
-                        //Add the single item
-                        explicitItemSource.Entries.Add((new ItemReference(itemUri, false)).ToString());
-                        getRelatedMediaItems(item, explicitItemSource);
-
-                        //Get all added renderings
-                        Sitecore.Layouts.RenderingReference[] renderings = item.Visualization.GetRenderings(Sitecore.Context.Device, true);
-
-                        // Get the layout definitions and the device
-                        LayoutField layoutField = new LayoutField(item.Fields[Sitecore.FieldIDs.LayoutField]);
-                        LayoutDefinition layoutDefinition = LayoutDefinition.Parse(layoutField.Value);
-                        DeviceDefinition deviceDefinition = layoutDefinition.GetDevice(Sitecore.Context.Device.ID.ToString());
-                        foreach (RenderingReference rendering in renderings)
-                        {
-                            //inject pipeline manager (instead of ServiceLocator you can use constructor injection if needed)
-                            BaseCorePipelineManager pipelineManager = ServiceLocator.ServiceProvider.GetService<BaseCorePipelineManager>();
-
-                            //create pipeline arguments where you put data source string
-                            var args = new ResolveRenderingDatasourceArgs(rendering.Settings.DataSource);
-                            args.CustomData["contextItem"] = item;
-
-                            //run the pipeline
-                            pipelineManager.Run("resolveRenderingDatasource", args);
-
-                            var datasourceItem = Sitecore.Configuration.Factory.GetDatabase("master").GetItem(args.Datasource);
-                            if (datasourceItem != null)
-                            {
-                                explicitItemSource.Entries.Add((new ItemReference(datasourceItem)).ToString());
-                                getRelatedMediaItems(datasourceItem, explicitItemSource);
-                            }
-                        }
-                    }
-
+                    getRealtedDataSourceItems(item, explicitItemSource);
                 }
             }
 
             ExplicitItemSource.Builder builder = new ExplicitItemSource.Builder(ApplicationContext.DocumentHolder.Document as ExplicitItemSource);
             builder.Initialize(new SimpleProcessingContext());
             (new EntrySorter(sourceCollection)).Populate(new Uniq(builder));
-            if (!string.IsNullOrEmpty(Languages.Value))
+            var chkLanguageValue = GetValue(chkLanguages);
+            if (!string.IsNullOrWhiteSpace(chkLanguageValue))
             {
-                Language lng;
-                if (Language.TryParse(Languages.Value, out lng))
-                {
-                    //itemSource.Language = lng;
-                    var filter = new ItemLanguageFilter();
-                    filter.Languages = Languages.Value;
-                    builder.Source.Include.Add(filter);
-                }
+                var filter = new ItemLanguageFilter();
+                filter.Languages = chkLanguageValue;
+                builder.Source.Include.Add(filter);
             }
             builder.Finish();
             string str1 = ApplicationContext.StoreObject(builder.Source);
@@ -281,6 +245,11 @@ namespace HackstreetBoys.Foundation.SitecoreExtensions.Dialogs
             base.EndWizard();
         }
 
+        /// <summary>
+        /// Gets the related media items for an Item and adds them to the ExplicitItemSource collection
+        /// </summary>
+        /// <param name="item">The source Item to get the related media items for</param>
+        /// <param name="explicitItemSource">The ExplicitItemSource collection to add the related media items to</param>
         private void getRelatedMediaItems(Item item, ExplicitItemSource explicitItemSource)
         {
             ItemLink[] itemLinks = Globals.LinkDatabase.GetItemReferences(item, false);
@@ -294,6 +263,71 @@ namespace HackstreetBoys.Foundation.SitecoreExtensions.Dialogs
             }
         }
 
+        /// <summary>
+        /// Gets the related media items and data source items for an Item and adds them to the ExplicitItemSource collection
+        /// </summary>
+        /// <param name="item">The source Item to get the related media items and datasources for</param>
+        /// <param name="explicitItemSource">The ExplicitItemSource collection to add the related media items and datasources to</param>
+        private void getRealtedDataSourceItems(Item item, ExplicitItemSource explicitItemSource)
+        {
+            if (item != null)
+            {
+                //Add the single item
+                explicitItemSource.Entries.Add((new ItemReference(item)).ToString());
+                getRelatedMediaItems(item, explicitItemSource);
+
+                //Get all added renderings
+                Sitecore.Layouts.RenderingReference[] renderings = item.Visualization.GetRenderings(Sitecore.Context.Device, true);
+
+                // Get the layout definitions and the device
+                LayoutField layoutField = new LayoutField(item.Fields[Sitecore.FieldIDs.LayoutField]);
+                LayoutDefinition layoutDefinition = LayoutDefinition.Parse(layoutField.Value);
+                DeviceDefinition deviceDefinition = layoutDefinition.GetDevice(Sitecore.Context.Device.ID.ToString());
+                foreach (RenderingReference rendering in renderings)
+                {
+                    //inject pipeline manager (instead of ServiceLocator you can use constructor injection if needed)
+                    BaseCorePipelineManager pipelineManager = ServiceLocator.ServiceProvider.GetService<BaseCorePipelineManager>();
+
+                    //create pipeline arguments where you put data source string
+                    var args = new ResolveRenderingDatasourceArgs(rendering.Settings.DataSource);
+                    args.CustomData["contextItem"] = item;
+
+                    //run the pipeline
+                    pipelineManager.Run("resolveRenderingDatasource", args);
+
+                    var datasourceItem = Sitecore.Configuration.Factory.GetDatabase("master").GetItem(args.Datasource);
+                    if (datasourceItem != null)
+                    {
+                        explicitItemSource.Entries.Add((new ItemReference(datasourceItem)).ToString());
+                        getRelatedMediaItems(datasourceItem, explicitItemSource);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets the value.
+        /// </summary>
+        /// <param name="list">The list.</param>
+        /// <returns></returns>
+        private string GetValue(Checklist list)
+        {
+            if (list == null)
+            {
+                return string.Empty;
+            }
+            ListString listStrings = new ListString();
+            ChecklistItem[] items = list.Items;
+            for (int i = 0; i < (int)items.Length; i++)
+            {
+                ChecklistItem checklistItem = items[i];
+                if (checklistItem.Checked)
+                {
+                    listStrings.Add(checklistItem.Value);
+                }
+            }
+            return listStrings.ToString();
+        }
 
         /// <summary>
         /// Lists the context menu.
@@ -335,7 +369,7 @@ namespace HackstreetBoys.Foundation.SitecoreExtensions.Dialogs
                 ApplicationContext.AttachDocument(new ExplicitItemSource());
                 this.Bind();
 
-                this.BindLanguages(this.Languages, "master");
+                this.BindLanguages(this.chkLanguages, "master");
             }
             base.OnLoad(e);
         }

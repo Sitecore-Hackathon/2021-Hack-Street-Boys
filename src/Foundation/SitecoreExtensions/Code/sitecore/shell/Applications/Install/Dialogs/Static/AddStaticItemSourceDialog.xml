@@ -40,13 +40,15 @@
             <Border Padding="0 0 8px 0" height="2em">
               <GridPanel class="scFormTable" Columns="2">
                 <Literal Text="Database:&#160;"/>
-
                 <Combobox ID="Databases" Change="ChangeDatabase"/>
-              <Literal Text="Language:&#160;"/>
-                  <Combobox ID="Languages" />
+
+                <Literal Text="Language:&#160;"/>
+                <Scrollbox Width="100%" Height="50px" style="border: 1px solid #ccc;" >
+                  <Checklist  ID="chkLanguages" />
+                </Scrollbox>
               </GridPanel>
             </Border>
-            <div style="position:absolute;top:90px;bottom:200px;left:0;right:0;overflow:auto;">
+            <div style="position:absolute;top:110px;bottom:200px;left:0;right:0;overflow:auto;">
               <Scrollbox Width="100%" style="border: 1px solid #ccc;" >
 
                 <DataTreeview ID="Treeview" DataContext="DataContext" Root="true">
@@ -63,8 +65,8 @@
               <div style="height:60px; overflow:hidden;padding-bottom: 10px;">
                 <Toolbutton Icon="Office/24x24/elements_cascade.png" Header="Add with Subitems" ToolTip="Adds item with subitems" Click="AddTree"/>
                 <Toolbutton Icon="Office/24x24/document_empty.png" Header="Add Item" ToolTip="Add Item" Click="AddItem"/>
-                <Toolbutton Icon="Office/24x24/link.png" Header="Add Item and Media" ToolTip="Add Item and Media" Click="AddItemWithMedia"/>
-                <Toolbutton Icon="Office/24x24/data.png" Header="Add Item and Datasources" ToolTip="Add Item and Datasources"  Click="AddItemWithDataSources"/>
+                <Toolbutton Icon="Office/24x24/link.png" Header="Add with Media" ToolTip="Adds item with related Media" Click="AddItemWithMedia"/>
+                <Toolbutton Icon="Office/24x24/data.png" Header="Add with Media and Datasources" ToolTip="Add Item with related Media and Datasources"  Click="AddItemWithDataSources"/>
               </div>
 
               <Scrollbox ID="ItemListBox" style="height:95px;width:100%;padding:0;" ContextMenu="ListContextMenu()">
