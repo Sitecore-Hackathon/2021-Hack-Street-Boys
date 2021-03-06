@@ -38,38 +38,45 @@ Features added in this module:
 
 ## Usage instructions
 
+The Sitecore Enhanced Package Designer is easy to use, you need to start with the following:
  1. Got to /sitecore and login into desktop
  2. Click Sitecore start menu, then **Development Tools** > **Package Designer**
  3. From the menu on top, click Items Statically
- 4. In the Language dropdown, select english
- 5. Navigate to sitecore/content/home/demo/multi-lingual , this item has english and danish versions, but we only want the english version
- 6. Click Add Item, then click next, name your source "only english"
- 7. From the menu on top, click Items Statically
- 8. Leave Language dropdown empty
- 9. navigate to sitecore/content/home/demo/page-with-media
- 10. click Add Item with Media, then click next, name your source "item with media"
- 11. From the menu on top, click Items Statically
- 12. Leave Language dropdown empty
- 13. navigate to sitecore/content/home/demo/page-with-datasources
- 14. Click Add Item with datasource, then click next, name your source "item with datasources"
- 15. Click on "only english" source and verify that only english version is added
- 16. click on "item with media" and verify that the item was added with all referenced media items
- 17. click on "item with datasources" and verify that item was added with all referenced media items
 
- ![Add with Media](docs/images/Add-With-Media.png?raw=true "Add with Media")
+Once you have the click items statically dialog, you will have the following new features:
+
+### Package Specific Item Language(s)
+
+A new labugage checkbox list field has been added, where the Content Author can choose the languages that need to be packaged for the select item, following is a screenshot for the dialog:
+
+Instructions:
+1. From the Checkbox list, select the targeted language(s).
+2. Select your targeted item/page
+3. Click any of the 4 Add options you have as needed. 
+
+ ![](docs/images/Language-Selection.png?raw=true "Add with Media")
+
+
+### Add with Media
+
+How many times you needed to package items from lower enviroment(s) and you missed related media items (images, pdfs, word...etc)? Alot, right? using the new cool package designer enhancement/feature, you can now be sure that your item/page related medai items are being packaged, a new (Add with Media) option has been added, where you can use to include the related media items for your current select item, following is a screenshot for the dialog:
+
+Instructions:
+1. Select your targeted item/page
+2. Click (Add with Media) link/button. 
+
+![Add with Media](docs/images/Add-With-Media.png?raw=true "Add with Media")
+
+
+### Add with Media and Datasources
+
+Similar to the previous use case, if you are packaging a page, you need the page related media items and rendering data sources to be included automatically, without the need to manually go through all related items, this is now possible with the (Add with Media and Datasources) enhancement that this module add to the package designer. following is a screenshot for the dialog:
+
+Instructions:
+1. Select your targeted item/page
+2. Click (Add with Media and Datasources) link/button.
 
 ![Add-with-Media-and-Datasources](docs/images/Add-with-Media-and-Datasources.png?raw=true "Add-with-Media-and-Datasources")
  
 
 ![Hackathon Logo](docs/images/hackathon.png?raw=true "Hackathon Logo")
-
-You can embed images of different formats too:
-
-![Deal With It](docs/images/deal-with-it.gif?raw=true "Deal With It")
-
-And you can embed external images too:
-
-![Random](https://thiscatdoesnotexist.com/)
-
-## Comments
-If you'd like to make additional comments that is important for your module entry.
