@@ -54,7 +54,7 @@ Instructions:
 2. Select your targeted item/page
 3. Click any of the 4 Add options you have as needed. 
 
- ![](docs/images/Language-Selection.png?raw=true "Add with Media")
+ ![Language Selection](docs/images/Language-Selection.png?raw=true "Language Selection")
 
 
 ### Add with Media
