@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29326.143
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{D2888619-EB48-4906-8080-6EDA36530D20}"
+	ProjectSection(SolutionItems) = preProject
+		nuget.config = nuget.config
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Feature", "Feature", "{EFC7128E-B998-4190-9FCB-5CAA7D36D51C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Foundation", "Foundation", "{D370FCBB-4412-4BE7-9356-64D4D0AABA70}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Project", "Project", "{D55BB850-7616-450F-9AAE-BBEE13048C2B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Serialization", "Serialization", "{8E52B0E0-0399-4412-94AD-104E07C0B963}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configuration", "Configuration", "{DC1E515A-ABD1-4A86-B8B0-8434B812FCD6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HackstreetBoys", "HackstreetBoys", "{5EDADE91-E5C6-4F78-B912-E5499E51A154}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HackstreetBoys.Enviroment.Configuration", "src\Configuration\HackstreetBoys.Enviroment.Configuration.csproj", "{ED512E24-C35E-4F85-AB40-69FE4F7E89D8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HackstreetBoys.Foundation.Serialization", "src\Foundation\Serialization\code\HackstreetBoys.Foundation.Serialization.csproj", "{13119FDB-64D4-408F-9512-93262ADA0DD8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HackstreetBoys.Project.Website", "src\Project\Hackstreetboys\code\HackstreetBoys.Project.Website.csproj", "{06784976-22FC-4B70-AC60-BF8E5D59E525}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ED512E24-C35E-4F85-AB40-69FE4F7E89D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED512E24-C35E-4F85-AB40-69FE4F7E89D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED512E24-C35E-4F85-AB40-69FE4F7E89D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED512E24-C35E-4F85-AB40-69FE4F7E89D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13119FDB-64D4-408F-9512-93262ADA0DD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13119FDB-64D4-408F-9512-93262ADA0DD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13119FDB-64D4-408F-9512-93262ADA0DD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13119FDB-64D4-408F-9512-93262ADA0DD8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06784976-22FC-4B70-AC60-BF8E5D59E525}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06784976-22FC-4B70-AC60-BF8E5D59E525}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06784976-22FC-4B70-AC60-BF8E5D59E525}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06784976-22FC-4B70-AC60-BF8E5D59E525}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8E52B0E0-0399-4412-94AD-104E07C0B963} = {D370FCBB-4412-4BE7-9356-64D4D0AABA70}
+		{5EDADE91-E5C6-4F78-B912-E5499E51A154} = {D55BB850-7616-450F-9AAE-BBEE13048C2B}
+		{ED512E24-C35E-4F85-AB40-69FE4F7E89D8} = {DC1E515A-ABD1-4A86-B8B0-8434B812FCD6}
+		{13119FDB-64D4-408F-9512-93262ADA0DD8} = {8E52B0E0-0399-4412-94AD-104E07C0B963}
+		{06784976-22FC-4B70-AC60-BF8E5D59E525} = {5EDADE91-E5C6-4F78-B912-E5499E51A154}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {95243106-40BA-4EBD-9C62-36D750759E72}
+	EndGlobalSection
+EndGlobal
