@@ -46,6 +46,13 @@ The Sitecore Enhanced Package Designer is easy to use, you need to start with th
  2. Click Sitecore start menu, then **Development Tools** > **Package Designer**
  3. From the menu on top, click Items Statically
 
+see the following screenshots:
+
+ ![Package Designer](docs/images/open-package-designer.png?raw=true "Package Designer")
+ 
+ ![Add Static Items](docs/images/Add-Static-Items.png?raw=true "Add Static Items")
+
+
 Once you have the click items statically dialog, you will have the following new features:
 
 ### Package Specific Item Language(s)
