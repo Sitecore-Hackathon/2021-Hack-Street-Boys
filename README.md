@@ -2,7 +2,10 @@
 
 ## Category : The best enhancement to the Sitecore Admin (XP) for Content Editors & Marketers
 
-## Module Name: Enhanced Package Designer:
+## Module Name: Enhanced Package Designer
+
+**Enhanced Package Designer** 
+> Empower Content Authors to better control the content packaging using Package Designer.
 
 This module was designed to enhance and extend the existing out of the box package designer (Items Statically). Offering users the ability to package items versions in **specific language/s** and the ability to **package item along with media item references and/or datasource references**.
 
