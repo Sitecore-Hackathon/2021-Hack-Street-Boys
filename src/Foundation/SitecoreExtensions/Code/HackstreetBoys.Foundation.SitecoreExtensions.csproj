@@ -73,7 +73,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="sitecore\shell\Applications\Install\Dialogs\" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Sitecore.Kernel">
       <Version>10.1.0</Version>
