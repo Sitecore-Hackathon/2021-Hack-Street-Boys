@@ -31,7 +31,7 @@ Features added in this module:
 ⟹ Write a short clear step-wise instruction on how to install your module.  
 
  - Download and install fresh instance of (XM) [Sitecore 10.1](https://dev.sitecore.net/Downloads/Sitecore_Experience_Platform/101/Sitecore_Experience_Platform_101.aspx)
- - Install SXA module
+ - Install SXA module (needed for testing - module is not specific for SXA, it works with non-SXA sites as well).
  - Install Enhanced Package Designer-1.0.zip package ([Can be found here](https://github.com/Sitecore-Hackathon/2021-Hack-Street-Boys/blob/main/sc.packages/Enhanced%20Package%20Designer-1.0.zip))
  - Install HackStreetBoys Demo Site-1.0.zip ([Can be found here](https://github.com/Sitecore-Hackathon/2021-Hack-Street-Boys/blob/main/sc.packages/HackStreetBoys%20Demo%20Site-1.0.zip))
  
