@@ -8,13 +8,12 @@
 
 You can find a very good reference to Github flavoured markdown reference in [this cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet). If you want something a bit more WYSIWYG for editing then could use [StackEdit](https://stackedit.io/app) which provides a more user friendly interface for generating the Markdown code. Those of you who are [VS Code fans](https://code.visualstudio.com/docs/languages/markdown#_markdown-preview) can edit/preview directly in that interface too.
 
-## Hackstreet Boys
+## Team : Hackstreet Boys
 
 ## Category : The best enhancement to the Sitecore Admin (XP) for Content Editors & Marketers
 
-## Description
-  
-  # Enhanced Package Designer:
+## Module Name: Enhanced Package Designer:
+
   This module enhances the existing package designer by providing additional options when using **items statically** option
   - allowing content authors to package items in specific language, This will help to package only content that is ready in specific language.
   - Adding option to add single item with all media items that the item is referencing.
@@ -30,46 +29,38 @@ You can find a very good reference to Github flavoured markdown reference in [th
 
 ## Pre-requisites and Dependencies
 
-⟹ Does your module rely on other Sitecore modules or frameworks?
-
-- List any dependencies
-- Or other modules that must be installed
-- Or services that must be enabled/configured
-
-_Remove this subsection if your entry does not have any prerequisites other than Sitecore_
+ - None
 
 ## Installation instructions
 ⟹ Write a short clear step-wise instruction on how to install your module.  
 
-> _A simple well-described installation process is required to win the Hackathon._  
-> Feel free to use any of the following tools/formats as part of the installation:
-> - Sitecore Package files
-> - Docker image builds
-> - Sitecore CLI
-> - msbuild
-> - npm / yarn
-> 
-> _Do not use_
-> - TDS
-> - Unicorn
+ - Download [Sitecore 10.1 Graphical setup package for XM Scaled](https://dev.sitecore.net/Downloads/Sitecore_Experience_Platform/101/Sitecore_Experience_Platform_101.aspx)
+ - Run the setup.exe, with **Installation/Solution Prefix** = hackstreetboys
+ - Clone the repository locally
  
-f. ex. 
-
-1. Start docker environment using `.\Start-Hackathon.ps1`
-2. Open solution in Visual Studio and run build
-3. Use the Sitecore Installation wizard to install the [package](#link-to-package)
-4. ...
-5. profit
-
-### Configuration
-⟹ If there are any custom configuration that has to be set manually then remember to add all details here.
-
-_Remove this subsection if your entry does not require any configuration that is not fully covered in the installation instructions already_
 
 ## Usage instructions
-⟹ Provide documentation about your module, how do the users use your module, where are things located, what do the icons mean, are there any secret shortcuts etc.
 
-Include screenshots where necessary. You can add images to the `./images` folder and then link to them from your documentation:
+ 1. Got to /sitecore and login into desktop
+ 2. Click Sitecore start menu, then **Development Tools** > **Package Designer**
+ 3. From the menu on top, click Items Statically
+ 4. In the Language dropdown, select english
+ 5. Navigate to sitecore/content/home/demo/multi-lingual , this item has english and danish versions, but we only want the english version
+ 6. Click Add Item, then click next, name your source "only english"
+ 7. From the menu on top, click Items Statically
+ 8. Leave Language dropdown empty
+ 9. navigate to sitecore/content/home/demo/page-with-media
+ 10. click Add Item with Media, then click next, name your source "item with media"
+ 11. From the menu on top, click Items Statically
+ 12. Leave Language dropdown empty
+ 13. navigate to sitecore/content/home/demo/page-with-datasources
+ 14. Click Add Item with datasource, then click next, name your source "item with datasources"
+ 15. Click on "only english" source and verify that only english version is added
+ 16. click on "item with media" and verify that the item was added with all referenced media items
+ 17. click on "item with datasources" and verify that item was added with all referenced media items
+
+ 
+ 
 
 ![Hackathon Logo](docs/images/hackathon.png?raw=true "Hackathon Logo")
 
