@@ -18,6 +18,7 @@ using System.Linq;
 using System.Web.UI;
 using HackstreetBoys.Foundation.SitecoreExtensions.PackageEntries;
 using Sitecore.Install.Filters;
+using Sitecore.Layouts;
 
 namespace HackstreetBoys.Foundation.SitecoreExtensions.Dialogs
 {
@@ -61,7 +62,7 @@ namespace HackstreetBoys.Foundation.SitecoreExtensions.Dialogs
 
         private void BindLanguages(Combobox list, string databaseName)
         {
-            
+
             if (list != null)
             {
                 list.Controls.Clear();
@@ -87,7 +88,7 @@ namespace HackstreetBoys.Foundation.SitecoreExtensions.Dialogs
                         checklistItem.Header = language.CultureInfo.DisplayName;
                         checklistItem.Value = language.Name;
                     }
-                    
+
                 }
                 Context.ClientPage.ClientResponse.Refresh(list);
             }
@@ -138,6 +139,11 @@ namespace HackstreetBoys.Foundation.SitecoreExtensions.Dialogs
         public void AddItemWithMedia()
         {
             this.AddEntry(this.DataContext.GetFolder(), "singleWithMedia", "office/16x16/document_empty.png");
+        }
+
+        public void AddItemWithDataSources()
+        {
+            this.AddEntry(this.DataContext.GetFolder(), "singleWithDataSources", "office/16x16/document_empty.png");
         }
 
         private void Bind()
@@ -207,13 +213,37 @@ namespace HackstreetBoys.Foundation.SitecoreExtensions.Dialogs
 
                     //Get item links from link database to get related media
                     var item = Database.GetItem(itemUri);
-                    ItemLink[] itemLinks = Globals.LinkDatabase.GetItemReferences(item, false);
-                    if (itemLinks != null)
+                    getRelatedMediaItems(item, explicitItemSource);
+                }
+                else if (str == "singleWithDataSources")
+                {
+                    //Add the single item
+                    explicitItemSource.Entries.Add((new ItemReference(itemUri, false)).ToString());
+
+                    //Get item links from link database to get related media
+                    var item = Database.GetItem(itemUri);
+                    var layoutField = item.Fields[Sitecore.FieldIDs.LayoutField];
+
+                    var layout = LayoutDefinition.Parse(layoutField.Value);
+                    foreach (var t1 in layout.Devices)
                     {
-                        var linkedItems = itemLinks.Select(x => x.GetTargetItem()).Where(x => x != null && x.Paths.IsMediaItem);
-                        foreach (var linkedItem in linkedItems)
+                        var device = t1 as DeviceDefinition;
+                        if (device != null)
                         {
-                            explicitItemSource.Entries.Add((new ItemReference(linkedItem.Uri, false)).ToString());
+                            foreach (var t in device.Renderings)
+                            {
+                                var rendering = t as RenderingDefinition;
+                                if (rendering != null && !string.IsNullOrEmpty(rendering.Datasource))
+                                {
+                                    var datasourceItem = Database.GetDatabase("master").GetItem(rendering.Datasource);
+                                    if (datasourceItem != null)
+                                    {
+                                        explicitItemSource.Entries.Add((new ItemReference(datasourceItem.Uri, false)).ToString());
+
+                                        getRelatedMediaItems(item, explicitItemSource);
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -238,6 +268,20 @@ namespace HackstreetBoys.Foundation.SitecoreExtensions.Dialogs
             Context.ClientPage.ClientResponse.SetDialogValue(str1);
             base.EndWizard();
         }
+
+        private void getRelatedMediaItems(Item item, ExplicitItemSource explicitItemSource)
+        {
+            ItemLink[] itemLinks = Globals.LinkDatabase.GetItemReferences(item, false);
+            if (itemLinks != null)
+            {
+                var linkedItems = itemLinks.Select(x => x.GetTargetItem()).Where(x => x != null && x.Paths.IsMediaItem);
+                foreach (var linkedItem in linkedItems)
+                {
+                    explicitItemSource.Entries.Add((new ItemReference(linkedItem.Uri, false)).ToString());
+                }
+            }
+        }
+
 
         /// <summary>
         /// Lists the context menu.

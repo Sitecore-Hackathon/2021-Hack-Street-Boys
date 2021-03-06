@@ -64,7 +64,7 @@
                 <Toolbutton Icon="Office/24x24/elements_cascade.png" Header="Add with Subitems" ToolTip="Adds item with subitems" Click="AddTree"/>
                 <Toolbutton Icon="Office/24x24/document_empty.png" Header="Add Item" ToolTip="Add Item" Click="AddItem"/>
                 <Toolbutton Icon="Office/24x24/link.png" Header="Add Item and Media" ToolTip="Add Item and Media" Click="AddItemWithMedia"/>
-                <Toolbutton Icon="Office/24x24/data.png" Header="Add Item and Datasources" ToolTip="Add Item and Datasources"  Click="AddItemWithMedia"/>
+                <Toolbutton Icon="Office/24x24/data.png" Header="Add Item and Datasources" ToolTip="Add Item and Datasources"  Click="AddItemWithDataSources"/>
               </div>
 
               <Scrollbox ID="ItemListBox" style="height:95px;width:100%;padding:0;" ContextMenu="ListContextMenu()">
