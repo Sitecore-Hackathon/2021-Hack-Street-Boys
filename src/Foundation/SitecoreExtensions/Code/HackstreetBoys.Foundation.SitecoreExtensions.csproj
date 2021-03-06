@@ -63,6 +63,7 @@
     <None Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dialogs\AddStaticItemSourceDialogExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -73,7 +74,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="sitecore\shell\Applications\Install\Dialogs\Static\AddStaticItemSourceDialog.xml" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Sitecore.Kernel">
       <Version>10.1.0</Version>
