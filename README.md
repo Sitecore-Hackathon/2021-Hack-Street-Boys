@@ -1,4 +1,4 @@
-## Team : Hackstreet Boys
+# Team : Hackstreet Boys
 
 ## Category : The best enhancement to the Sitecore Admin (XP) for Content Editors & Marketers
 
