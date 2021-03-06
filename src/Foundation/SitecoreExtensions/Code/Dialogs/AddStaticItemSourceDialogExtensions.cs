@@ -187,20 +187,24 @@ namespace HackstreetBoys.Foundation.SitecoreExtensions.Dialogs
                 string str = strArrays[0];
                 if (str == "recursive")
                 {
-                    ExtendedItemSource itemSource = new ExtendedItemSource()
+                    //ExtendedItemSource itemSource = new ExtendedItemSource()
+                    ItemSource itemSource = new ItemSource()
                     {
                         SkipVersions = true,
                         Database = itemUri.DatabaseName,
 
                         Root = itemUri.ItemID.ToString()
                     };
-                    itemSource.Language = null;
+                    //itemSource.Language = null;
                     if(!string.IsNullOrEmpty(Languages.Value))
                     {
                         Language lng;
                         if(Language.TryParse(Languages.Value, out lng))
                         {
-                            itemSource.Language = lng;
+                            //itemSource.Language = lng;
+                            var filter = new ItemLanguageFilter();
+                            filter.Languages = Languages.Value;
+                            itemSource.Include.Add(filter);
                         }
                     }
                     sourceCollection.Add(itemSource);
@@ -225,6 +229,17 @@ namespace HackstreetBoys.Foundation.SitecoreExtensions.Dialogs
                             explicitItemSource.Entries.Add((new ItemReference(linkedItem.Uri, false)).ToString());
                         }
                     }
+                }
+            }
+            if (!string.IsNullOrEmpty(Languages.Value))
+            {
+                Language lng;
+                if (Language.TryParse(Languages.Value, out lng))
+                {
+                    //itemSource.Language = lng;
+                    var filter = new ItemLanguageFilter();
+                    filter.Languages = Languages.Value;
+                    explicitItemSource.Include.Add(filter);
                 }
             }
             ExplicitItemSource.Builder builder = new ExplicitItemSource.Builder(ApplicationContext.DocumentHolder.Document as ExplicitItemSource);
