@@ -18,7 +18,7 @@ Features added in this module:
 -	Ability to add item with it's referenced media items 
 -	Ability to add item with it's referenced media and/ datasource items
 
-![Enhanced Package Designer](docs/images/Add-Static-Items-Highlights.png?raw=true "Enhanced Package Designer")
+![Enhanced Package Designer](docs/images/Add-Static-Items-No-Highlight.png?raw=true "Enhanced Package Designer")
 
 ## Video link
 ⟹ Provide a video highlighing your Hackathon module submission and provide a link to the video. You can use any video hosting, file share or even upload the video to this repository. _Just remember to update the link below_
