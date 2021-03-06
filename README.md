@@ -25,6 +25,9 @@ Extended flexibility list
 
 ![Enhanced Package Designer](docs/images/Add-Static-Items-Highlights.png?raw=true "Enhanced Package Designer")
 
+![Add with Media](docs/images/Add-With-Media.png?raw=true "Add with Media")
+
+![Add-with-Media-and-Datasources](docs/images/Add-with-Media-and-Datasources.png?raw=true "Add-with-Media-and-Datasources")
 
 ## Video link
 ⟹ Provide a video highlighing your Hackathon module submission and provide a link to the video. You can use any video hosting, file share or even upload the video to this repository. _Just remember to update the link below_
