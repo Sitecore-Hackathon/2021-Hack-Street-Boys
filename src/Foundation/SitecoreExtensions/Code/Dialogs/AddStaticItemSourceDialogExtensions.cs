@@ -223,13 +223,13 @@ namespace HackstreetBoys.Foundation.SitecoreExtensions.Dialogs
                 }
                 else if (str == "singleWithDataSources")
                 {
-                    //Add the single item
-                    explicitItemSource.Entries.Add((new ItemReference(itemUri, false)).ToString());
-
-                    //Get item links from link database to get related media
                     var item = Database.GetItem(itemUri);
                     if (item != null)
                     {
+                        //Add the single item
+                        explicitItemSource.Entries.Add((new ItemReference(itemUri, false)).ToString());
+                        getRelatedMediaItems(item, explicitItemSource);
+
                         //Get all added renderings
                         Sitecore.Layouts.RenderingReference[] renderings = item.Visualization.GetRenderings(Sitecore.Context.Device, true);
 
