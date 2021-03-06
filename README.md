@@ -11,7 +11,7 @@ This module was designed to enhance and extend the existing out of the box packa
 
 The enhanced designer can be utilized to target items in a specific language/s By allowing users to capture a single, or multiple languages, for a given page rather than the need to package all languages for a given page. This reduces the risk that potential content authors face when migrating content between environments because language page versions that are not complete would have previously been packaged.
 
-The enhanced designer also enables the user to package an item along with it's related/referenced media items and/or data sources. this will reduce the headache of trying to package page items and individually trying to indentify the referenced media/datasource items.
+The enhanced designer also enables the user to package an item along with it's related/referenced media items and/or data sources. this will reduce the headache of trying to package page items and individually trying to identify the referenced media/datasource items.
 
 Features added in this module:
 -	Ability to select language/s filter when i adding items statically 
@@ -21,7 +21,7 @@ Features added in this module:
 ![Enhanced Package Designer](docs/images/Add-Static-Items-No-Highlight.png?raw=true "Enhanced Package Designer")
 
 ## Video link
-⟹ Provide a video highlighing your Hackathon module submission and provide a link to the video. You can use any video hosting, file share or even upload the video to this repository. _Just remember to update the link below_
+⟹ Provide a video highlighting your Hackathon module submission and provide a link to the video. You can use any video hosting, file share or even upload the video to this repository. _Just remember to update the link below_
 
 ⟹ [Replace this Video link](#video-link)
 
@@ -57,7 +57,7 @@ Once you have the click items statically dialog, you will have the following new
 
 ### Package Specific Item Language(s)
 
-A new labugage checkbox list field has been added, where the Content Author can choose the languages that need to be packaged for the select item, following is a screenshot for the dialog:
+A new language checkbox list field has been added, where the Content Author can choose the languages that need to be packaged for the select item, following is a screenshot for the dialog:
 
 Instructions:
 1. From the Checkbox list, select the targeted language(s).
@@ -69,7 +69,7 @@ Instructions:
 
 ### Add with Media
 
-How many times you needed to package items from lower enviroment(s) and you missed related media items (images, pdfs, word...etc)? Alot, right? using the new cool package designer enhancement/feature, you can now be sure that your item/page related medai items are being packaged, a new (Add with Media) option has been added, where you can use to include the related media items for your current select item, following is a screenshot for the dialog:
+How many times you needed to package items from lower environment(s) and you missed related media items (images, pdfs, word...etc)? A lot, right? using the new cool package designer enhancement/feature, you can now be sure that your item/page related media items are being packaged, a new (Add with Media) option has been added, where you can use to include the related media items for your current select item, following is a screenshot for the dialog:
 
 Instructions:
 1. Select your targeted item/page
